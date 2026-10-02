@@ -32,8 +32,38 @@
     </nav>
 
     <main class="one-page-scroll">
+      <!-- 區塊：首頁 (Hero Section) -->
       <section id="hero" class="page-section hero-bg">
-        <div class="section-content"></div>
+        <!-- 👇 新增：鎖定在首頁右下角的圖片按鈕容器 👇 -->
+        <div class="hero-action-buttons">
+          <!-- 📦 按鈕一：試玩下載 (直接連結至 PC build release 的 zip 檔) -->
+          <a
+            href="https://github.com/pa-casefile/pa-casefile-pc/releases/download/v0.1/PrudentiaAcademy-0.1-pc.zip"
+            class="hero-btn-link"
+            title="Download PC Demo Version"
+          >
+            <img
+              src="/images/btn_download_en.webp"
+              alt="Download PC Demo"
+              class="action-btn-img"
+            />
+          </a>
+
+          <!-- 🌐 按鈕二：網上試玩 (開新視窗/新分頁連至 web build 的 GitHub Pages) -->
+          <a
+            href="https://pa-casefile.github.io/pa-casefile-web/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-btn-link"
+            title="Play Web Version in New Tab"
+          >
+            <img
+              src="/images/btn_play_en.webp"
+              alt="Play on Web"
+              class="action-btn-img"
+            />
+          </a>
+        </div>
       </section>
 
       <!-- 區塊：劇情內容 -->
@@ -129,7 +159,11 @@
                   <h3 class="char-name">You</h3>
                   <span class="char-tag">Goofball by the Styx</span>
                   <p class="char-bio">
-                    A boy brought to another world by Mors after death, becoming a death deity's retainer. According to Mors, he will face countless deathly perils in life; but becoming a death deity's retainer might help him turn danger into safety, like fighting fire with fire.
+                    A boy brought to another world by Mors after death, becoming
+                    a death deity's retainer. According to Mors, he will face
+                    countless deathly perils in life; but becoming a death
+                    deity's retainer might help him turn danger into safety,
+                    like fighting fire with fire.
                   </p>
                 </div>
 
@@ -138,7 +172,11 @@
                   <h3 class="char-name">Mors</h3>
                   <span class="char-tag">Frost White Crow</span>
                   <p class="char-bio">
-                    Frost White Death's Deity Mors—a divine name that strikes terror into hearts, and the mastermind who brought you to another world, is actually a cute girl. That said, her divine power is unquestionable, and she is naturally your patron deity.
+                    Frost White Death's Deity Mors—a divine name that strikes
+                    terror into hearts, and the mastermind who brought you to
+                    another world, is actually a cute girl. That said, her
+                    divine power is unquestionable, and she is naturally your
+                    patron deity.
                   </p>
                 </div>
 
@@ -147,7 +185,11 @@
                   <h3 class="char-name">Echo</h3>
                   <span class="char-tag">Fantasy Grimoire</span>
                   <p class="char-bio">
-                    A noble daughter of the Triad family, but she is more famous for her vast magical knowledge. Reading extensively with a photographic memory and an insatiable thirst for knowledge, she is even dubbed "Omniscient". Besides her love for books, she has a hidden little secret.
+                    A noble daughter of the Triad family, but she is more famous
+                    for her vast magical knowledge. Reading extensively with a
+                    photographic memory and an insatiable thirst for knowledge,
+                    she is even dubbed "Omniscient". Besides her love for books,
+                    she has a hidden little secret.
                   </p>
                 </div>
 
@@ -156,7 +198,10 @@
                   <h3 class="char-name">Orphne</h3>
                   <span class="char-tag">Nonexistent</span>
                   <p class="char-bio">
-                    A gentle and deeply inclusive big sister who is actually a powerful necromancer from the unknown Gorgyra family. For some unknown reason, she always carries a lace umbrella, insisting on holding it even indoors.
+                    A gentle and deeply inclusive big sister who is actually a
+                    powerful necromancer from the unknown Gorgyra family. For
+                    some unknown reason, she always carries a lace umbrella,
+                    insisting on holding it even indoors.
                   </p>
                 </div>
 
@@ -165,7 +210,9 @@
                   <h3 class="char-name">Eurydike</h3>
                   <span class="char-tag">Aloof Genius</span>
                   <p class="char-bio">
-                    A mysterious, powerful, and taciturn young girl dubbed a "once-in-a-millennium" genius. She seems to know the Headmistress of Prudentia Academy.
+                    A mysterious, powerful, and taciturn young girl dubbed a
+                    "once-in-a-millennium" genius. She seems to know the
+                    Headmistress of Prudentia Academy.
                   </p>
                 </div>
 
@@ -174,7 +221,11 @@
                   <h3 class="char-name">Maniae</h3>
                   <span class="char-tag">Sea Breeze Maiden</span>
                   <p class="char-bio">
-                    She looks identical to a classmate you knew in your original world, with the same name. However, her true identity remains a mystery, and she claims to have lost most of her memories. Introverted and timid by nature, she appears highly dependent on Eurydike.
+                    She looks identical to a classmate you knew in your original
+                    world, with the same name. However, her true identity
+                    remains a mystery, and she claims to have lost most of her
+                    memories. Introverted and timid by nature, she appears
+                    highly dependent on Eurydike.
                   </p>
                 </div>
               </div>
@@ -250,7 +301,6 @@
     </main>
   </body>
 </html>
-
 
 <style>
   /* 這裡的 CSS 樣式三個語言檔案都通用，我把多語言的樣式寫在最下方 */
@@ -333,13 +383,75 @@
     padding: 40px;
     text-align: center;
   }
+  /* 🎮 首頁主視覺背景圖設定 */
   .hero-bg {
-    background-image: url("/images/main_title.webp"); /* 🎯 精準讀取你存放在 public/images/ 的大圖 */
-    background-position: center center; /* 📐 圖片永遠保持置中 */
-    background-repeat: no-repeat; /* 🚫 圖片太大或太小時，絕對不重複磁磚拼貼 */
-    background-size: cover; /* 🔒 核心：強制圖片等比例縮放，完美撐滿整個螢幕畫面，絕不變形 */
-    position: relative;
+    background-image: url("/images/main_title.webp");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; /* 🎯 核心：必須是相對定位，右下角的按鈕才能以此為基準定錨 */
+    width: 100%;
+    height: 100vh;
   }
+
+  /* 🎯 核心：將按鈕容器強制死鎖在首頁的「右下角」 */
+  .hero-action-buttons {
+    position: absolute;
+    right: 60px; /* ↔️ 距離螢幕右邊緣 60 像素 */
+    bottom: 50px; /* ↕️ 距離螢幕下邊緣 50 像素 */
+    display: flex;
+    flex-direction: row; /* ↔️ 兩個按鈕橫向排開（如果你希望上下堆疊，可以改成 column） */
+    gap: 20px; /* 📐 按鈕與按鈕之間保持 20 像素的舒適間距 */
+    z-index: 20; /* 🔝 確保按鈕浮在主視覺最上層，玩家絕對點得到 */
+  }
+
+  /* 超連結外框控制 */
+  .hero-btn-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  /* 🖼️ 圖片按鈕本體外觀與尺寸控制 */
+  .action-btn-img {
+    height: 65px; /* 🔒 鎖定圖片按鈕的高度為 65 像素（寬度會依據你設計的圖片比例自動等比縮放，絕不變形） */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    cursor: pointer;
+
+    /* 🪄 加入細微的亮框與陰影，讓圖片按鈕在多變的背景大圖前依舊立體、顯眼 */
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* 🔥 滑鼠懸停（Hover）動態回饋：仿大廠按鈕微光與上浮特效 */
+  .action-btn-img:hover {
+    transform: translateY(
+      -4px
+    ); /* 🆙 點擊前微微上浮 4 像素，極具靈動的反饋感 */
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.65)) brightness(1.1); /* 💡 微微加亮圖片 1.1 倍，提醒玩家「這可以點擊」 */
+  }
+
+  /* ⚡ 點擊瞬間（Active）反饋 */
+  .action-btn-img:active {
+    transform: translateY(
+      -1px
+    ); /* ⏬ 點擊下去時輕微下壓，模擬真實按鈕按下去的紮實體感 */
+  }
+
+  /* 📱 貼心 RWD 行動端優化：當玩家用直立手機看網頁時，自動把按鈕移到畫面中下方正中央，防止縮小擠偏 */
+  @media (max-width: 768px) {
+    .hero-action-buttons {
+      right: 50%;
+      transform: translateX(50%); /* 🎯 強制在手機螢幕水平正置中 */
+      bottom: 40px;
+      gap: 15px;
+    }
+    .action-btn-img {
+      height: 50px; /* 📱 手機螢幕較小，按鈕高度微幅縮小到 50 像素 */
+    }
+  }
+
   /* 🔮 1. 故事區域背景：放入你的模糊背景大圖 */
   .story-bg {
     background-image: url("/images/story_bg_blur.webp"); /* 🎯 這裡換上你模糊化處理後的大背景圖 */
