@@ -12,7 +12,11 @@
 
   <nav class="sticky-nav">
     <div class="nav-container">
-      <div class="logo">🔮 GAME LOGO</div>
+      <div class="logo">
+        <a href="/en/">
+          <img src="/images/logo_en.png" alt="Game Title" class="logo-img" />
+        </a>
+      </div>
       <ul class="nav-links">
         <li><a href="#hero">トップ</a></li>
         <li><a href="#story">ストーリー</a></li>
@@ -64,12 +68,44 @@
   /* 保持與繁中相同的 CSS */
   html { scroll-behavior: smooth; margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: sans-serif; margin: 0; background-color: #0b0b16; color: #fff; }
-  .sticky-nav { position: fixed; top: 0; left: 0; width: 100%; height: 70px; background: rgba(11, 11, 22, 0.85); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130px; /* 🆙 從 70px 放大到 130px，讓 100px 的 LOGO 上下各有 15px 的完美留白 */
+    background: rgba(11, 11, 22, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logo-img {
+	height: 100px; /* 🔒 依你所願，強制鎖定高度為 100 像素 */
+    width: auto;   /* 📐 寬度依舊等比例縮放，確保圖片不扁塌變形 */
+    display: block;
+    object-fit: contain;
+    transition: transform 0.2s;
+  }
+  .logo-img:hover {
+    transform: scale(1.03); /* 因為圖片變大了，放大效果調微幅一點（1.03倍）才不會太突兀 */
+  }
   .nav-container { max-width: 1200px; margin: 0 auto; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
   .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
   .nav-links a { color: #ccc; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
   .nav-links a:hover { color: #da9100; }
-  .page-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding-top: 70px; box-sizing: border-box; }
+  .page-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 130px; /* 🆙 這裡也要同步改成 130px！預留導覽列的高度，後面的遊戲內容才不會被壓在選單下方 */
+    box-sizing: border-box;
+  }
   .section-content { max-width: 1000px; width: 100%; padding: 40px; text-align: center; }
   .hero-bg { background: #121225; }
   .story-bg { background: #1a1a3a; }
