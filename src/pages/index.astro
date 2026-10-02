@@ -104,6 +104,7 @@
             <span class="dot active" data-index="0"></span>
             <span class="dot" data-index="1"></span>
             <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
           </div>
         </div>
       </section>
@@ -349,21 +350,22 @@
     padding: 10px 0;
   }
 
-  /* 🎡 輪播圖主容器 */
+  /* 🎡 輪播圖主容器：改成純粹的置中基準點，寬度完全不限制內層 */
   .carousel-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    position: relative; /* 🎯 設定為相對定位，作為內層懸浮按鈕的基準點 */
+    width: 124.44vh; /* 🎯 核心：直接把外殼寬度鎖定為完美的 16:9 寬度 */
+    max-width: 85vw; /* 🛡️ 安全防護：在窄螢幕下最多佔螢幕寬 85%，絕對不超出螢幕 */
+    margin: 0 auto;
   }
 
-  /* 🖼️ 中央截圖視窗：100% 擺脫按鈕擠壓，鎖定 16:9 巨型黃金比例 */
+  /* 🖼️ 中央截圖視窗：100% 獨立，與按鈕完全沒有任何鄰居關係 */
   .carousel-window {
-    height: 70vh; /* 🔒 鎖定高度為螢幕區域的 70% */
+    height: 70vh; /* 🔒 依你所願，高度嚴格鎖定 70% */
     max-height: 70vh;
-    width: 124.44vh; /* 📐 70vh * (16/9)，此時沒有按鈕強推，寬度會 100% 精準拉開 */
-    max-width: 85vw; /* 🛡️ 安全防護：限制最寬只能佔螢幕寬度的 85%，預留左右空間，大螢幕下絕對不跑版 */
+    width: 100%; /* 📐 直接吃滿上方 container 的 124.44vh 完美寬度 */
 
     overflow: hidden;
     border-radius: 16px;
@@ -388,14 +390,14 @@
   .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 📐 方塊形狀精準後，cover 會讓 16:9 的遊戲截圖嚴絲合縫完美填滿 */
+    object-fit: cover; /* 📐 比例完美後，cover 會嚴絲合縫填滿，絕不留白或變形 */
   }
 
-  /* ⬅️ ➡️ 左右切換按鈕：改成「懸浮」模式，絕對不佔寬度空間 */
+  /* ⬅️ ➡️ 左右切換按鈕：改成「全懸浮」模式，完全不參與任何 Flexbox 寬度分配 */
   .carousel-btn {
-    position: absolute; /* 🚀 核心修改：改為絕對定位，讓它像幽靈一樣浮在圖片上方 */
-    top: 50%; /* ↕️ 垂直居中 */
-    transform: translateY(-50%); /* ↕️ 完美對齊中心點 */
+    position: absolute; /* 🚀 核心：改為絕對定位，與大圖完全分層 */
+    top: 50%; /* ↕️ 垂直置中 */
+    transform: translateY(-50%);
 
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
@@ -410,27 +412,23 @@
     justify-content: center;
     transition: all 0.2s;
     user-select: none;
-    z-index: 10; /* 🔝 確保按鈕永遠浮在圖片的最上層，點得到 */
+    z-index: 10;
   }
 
-  /* 🎯 精準定位左、右按鈕的懸浮座標（剛好貼在 16:9 方塊的兩側外緣） */
+  /* 🎯 精準定位：將按鈕強行推到 16:9 方塊的「正外側」，中間預留 30px 空隙，且絕對不回彈擠壓圖片 */
   .prev-btn {
-    left: calc(
-      50% - (124.44vh / 2) - 80px
-    ); /* 🔍 從中央往左推半個大圖寬度，再外留 80px 距離 */
+    left: -85px; /* 🔍 剛好掛在大圖左邊緣外側 85 像素的位置 */
   }
 
   .next-btn {
-    right: calc(
-      50% - (124.44vh / 2) - 80px
-    ); /* 🔍 從中央往右推半個大圖寬度，再外留 80px 距離 */
+    right: -85px; /* 🔍 剛好掛在大圖右邊緣外側 85 像素的位置 */
   }
 
-  /*  Hover 動態回饋 */
+  /* Hover 動態回饋 */
   .carousel-btn:hover {
     background: #da9100;
     border-color: #da9100;
-    transform: translateY(-50%) scale(1.1); /* 🔥 注意：因為有垂直居中，放大時要保留 translateY */
+    transform: translateY(-50%) scale(1.1);
   }
 
   /* 🟢 下方圓點指示器樣式 */
@@ -455,8 +453,17 @@
     border-radius: 5px;
   }
 
-  /* 📱 貼心行動端/小螢幕防爆優化：萬一螢幕不夠寬，自動把按鈕收進圖片內部 */
-  @media (max-width: 1400px) {
+  /* 📱 貼心行動端/小螢幕防爆優化：萬一螢幕不夠寬（如筆電或手機），自動把按鈕收進圖片內部 */
+  @media (max-width: 1450px) {
+    .carousel-container {
+      width: 100%;
+      max-width: 85vw;
+    }
+    .carousel-window {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    } /* 🛡️ 在小螢幕下改用 CSS 比例鎖定 */
     .prev-btn {
       left: 20px;
       transform: translateY(-50%);
