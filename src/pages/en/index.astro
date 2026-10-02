@@ -84,10 +84,16 @@
                   <img src="/images/features_02_en.webp" alt="Academy Life 2" />
                 </div>
                 <div class="carousel-slide">
-                  <img src="/images/features_03_en.webp" alt="Investigation 1" />
+                  <img
+                    src="/images/features_03_en.webp"
+                    alt="Investigation 1"
+                  />
                 </div>
                 <div class="carousel-slide">
-                  <img src="/images/features_04_en.webp" alt="Investigation 2" />
+                  <img
+                    src="/images/features_04_en.webp"
+                    alt="Investigation 2"
+                  />
                 </div>
               </div>
             </div>
@@ -110,10 +116,135 @@
         </div>
       </section>
 
-      <section id="characters" class="page-section characters-bg">
-        <div class="section-content">
-          <h2>🔍 Characters</h2>
-          <p>Dynamic profiles for lynceus, eurydike, and more...</p>
+      <!-- 區塊：角色介紹 -->
+      <section id="characters" class="page-section char-bg">
+        <div class="section-content char-layout">
+          <!-- 🏛️ 左側區域：文字資訊、切換箭頭與頭像選單 -->
+          <div class="char-left-zone">
+            <!-- 📜 左側上部：人物故事資訊卡（內含 6 位角色的文字軌道） -->
+            <div class="char-info-window">
+              <div class="char-info-track" id="charInfoTrack">
+                <!-- 角色 1 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">You</h3>
+                  <span class="char-tag">Goofball by the Styx</span>
+                  <p class="char-bio">
+                    被死神少女強行帶到神祕魔法學園的倒楣死者。為了生存，你必須在「玻里蒂亞」內不斷磨練探案技巧，抽絲剝繭揭開即將毀滅全人類的終極凶案。
+                  </p>
+                </div>
+
+                <!-- 角色 2 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Mors</h3>
+                  <span class="char-tag">Frost White Crow</span>
+                  <p class="char-bio">
+                    思考清晰。拒絕一切古風或晦澀文風的青年。眼前的線索在他腦海中會自動重組，隨時保持著絕對冷靜與客觀的破案直覺。
+                  </p>
+                </div>
+
+                <!-- 角色 3 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Echo</h3>
+                  <span class="char-tag">Fantasy Grimoire</span>
+                  <p class="char-bio">
+                    學園深處的神祕少女。言談舉止間絕少使用語氣助詞，語調冰冷而堅定。她似乎掌握了死神與魔法學園之間那道不可告人的禁忌聯繫。
+                  </p>
+                </div>
+
+                <!-- 角色 4 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Orphne</h3>
+                  <span class="char-tag">Nonexistent</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+
+                <!-- 角色 5 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Eurydike</h3>
+                  <span class="char-tag">Aloof Genius</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+
+                <!-- 角色 6 -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Maniae</h3>
+                  <span class="char-tag">Sea Breeze Maiden</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🎮 左側下部：左右箭頭與 6 個角色頭像點選選單 -->
+            <div class="char-nav-wrapper">
+              <!-- ⬅️ 左箭頭 -->
+              <button
+                class="char-arrow-btn"
+                id="charPrevBtn"
+                aria-label="上一個角色">&#10094;</button
+              >
+
+              <!-- 6位角色的橫向點選頭像 -->
+              <div class="char-avatar-menu">
+                <div class="avatar-box active" data-char="0">
+                  <img src="/images/ch_thumb_01.webp" alt="頭像1" />
+                </div>
+                <div class="avatar-box" data-char="1">
+                  <img src="/images/ch_thumb_02.webp" alt="頭像2" />
+                </div>
+                <div class="avatar-box" data-char="2">
+                  <img src="/images/ch_thumb_03.webp" alt="頭像3" />
+                </div>
+                <div class="avatar-box" data-char="3">
+                  <img src="/images/ch_thumb_04.webp" alt="頭像4" />
+                </div>
+                <div class="avatar-box" data-char="4">
+                  <img src="/images/ch_thumb_05.webp" alt="頭像5" />
+                </div>
+                <div class="avatar-box" data-char="5">
+                  <img src="/images/ch_thumb_06.webp" alt="頭像6" />
+                </div>
+              </div>
+
+              <!-- ➡️ 右箭頭 -->
+              <button
+                class="char-arrow-btn"
+                id="charNextBtn"
+                aria-label="下一個角色">&#10095;</button
+              >
+            </div>
+          </div>
+
+          <!-- 🖼️ 右側區域：角色去背全身立繪展示窗 -->
+          <div class="char-right-zone">
+            <div class="char-image-window">
+              <div class="char-image-track" id="charImageTrack">
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_01.webp" alt="角色1立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_02.webp" alt="角色2立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_03.webp" alt="角色3立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_04.webp" alt="角色4立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_05.webp" alt="角色5立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_06.webp" alt="角色6立繪" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
