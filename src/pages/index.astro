@@ -338,16 +338,38 @@
     position: relative;
   }
 
-  /* 佈局容器：拿掉標題後，微調間距讓重心完美居中 */
+  /* 🏫 遊戲特式佈局容器（強制完全置中） */
   .features-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 🎯 確保所有內層元件水平正置中 */
+    justify-content: center; /* 🎯 確保所有內層元件垂直正置中 */
+    gap: 15px;
+    height: calc(100vh - 130px);
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 auto; /* 🛡️ 保險：左右外邊距自動平分 */
+  }
+
+  /* ⚡ 新增：徹底清除最初設定的全域置中干擾，強制清除多餘推力 */
+  .features-layout.section-content {
+    max-width: 100%; /* 🔓 解開原本 1000px 的寬度限制，讓 124.44vh 的大圖自由舒展 */
+    padding: 0; /* 🚫 拔除左右內邊距，防止一邊多一邊少導致偏向 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* 🤏 縮減間距，留出更多垂直空間給大圖 */
-    height: calc(100vh - 130px);
-    width: 100%;
-    padding: 10px 0;
+  }
+
+  /* 🎡 輪播圖主容器 */
+  .carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 124.44vh;
+    max-width: 85vw;
+    margin: 0 auto; /* 🎯 核心：強制左右外邊距完美平分，將圖表鎖死在螢幕正中央 */
   }
 
   /* 🎡 輪播圖主容器：改成純粹的置中基準點，寬度完全不限制內層 */
