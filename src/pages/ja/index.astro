@@ -49,10 +49,10 @@
 
         <!-- 📜 下方：故事文案區（佔 1/3 空間） -->
         <div class="story-text-wrapper">
-          <p class="story-highlight">「只要破了這宗案，你就能活下去。」</p>
+          <p class="story-highlight">「この事件さえ解決すれば、お前は生き残れる。」</p>
           <p class="story-desc">
-            你死了。接著一位自稱「死神」的少女，突然將你強行帶到了神祕的魔法學園，命令你在此學習探案技巧。<br />
-            她的目的，僅僅是為了一宗即將發生的神祕凶案──而那宗凶案的受害者，竟然是「全人類」！
+            あなたは死んだ。「死神」を自称する謎の少女によって、突如として魔法学校へと連れ去られた。<br />
+            そこで探偵技術を学ぶよう命じられた目的は、ある一つの殺人事件のため。その事件の被害者は……「全人類」だった。
           </p>
         </div>
 
@@ -127,7 +127,75 @@
     background-size: cover;                           /* 🔒 核心：強制圖片等比例縮放，完美撐滿整個螢幕畫面，絕不變形 */
     position: relative;
   }
-  .story-bg { background: #1a1a3a; }
+  /* 🔮 劇情內容區塊背景與佈局 */
+  .story-bg {
+    background: #0d0d1a; /* 深邃的神祕黑藍色，襯托探案與死神氛圍 */
+  }
+
+  /* 直立式上下配置容器 */
+  .story-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 🎯 修正：從 space-between 改為 center，讓圖文往中間靠攏 */
+    gap: 20px;               /* 📐 核心：精準設定圖片與文字之間「只留 20 像素」的舒適空隙 */
+    height: calc(100vh - 130px);
+    max-width: 900px;
+    padding: 20px 0;
+  }
+
+  /* 🖼️ 圖片外框 */
+  .story-image-wrapper {
+    flex: 0 1 auto; /* 🎯 修正：取消強制的 2 等分，讓圖片依據自身大小與螢幕高度自動縮放 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: 55vh;
+    overflow: hidden;
+  }
+
+  .story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 📐 圖片等比例縮放，完整顯示整張 16:9 遊戲截圖，絕不外切 */
+    border-radius: 8px; /* 微幅圓角，增加網頁精緻度 */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* 給截圖加上立體陰影 */
+  }
+
+  /* 📜 文字外框（佔 1/3 空間） */
+  .story-text-wrapper {
+    flex: 0 0 auto; /* 🎯 修正：取消 1 等分分配，改為緊貼圖片下方 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px; /* 🤏 縮小文字頂部的內邊距 */
+    text-align: center;
+  }
+
+  /* 金色粗體標語 */
+  .story-highlight {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #da9100; /* 金色 */
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
+
+  /* 白字劇情描述 */
+  .story-desc {
+    font-size: 1.1rem;
+    line-height: 1.8; /* 舒適的行高 */
+    color: #e0e0e0;
+    margin: 0;
+  }
+
+  /* 📱 貼心 RWD 行動端優化：當玩家用手機直立觀看時，自動微調字體大小防止跑版 */
+  @media (max-width: 768px) {
+    .story-highlight { font-size: 1.25rem; }
+    .story-desc { font-size: 0.95rem; line-height: 1.6; }
+  }
   .features-bg { background: #121225; }
   .characters-bg { background: #1a1a3a; }
   .lang-switch { color: #666; font-size: 1rem; }

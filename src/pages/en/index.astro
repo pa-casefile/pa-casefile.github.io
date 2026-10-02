@@ -49,10 +49,10 @@
 
         <!-- 📜 下方：故事文案區（佔 1/3 空間） -->
         <div class="story-text-wrapper">
-          <p class="story-highlight">「只要破了這宗案，你就能活下去。」</p>
+          <p class="story-highlight">"Solve this case, and you shall live."</p>
           <p class="story-desc">
-            你死了。接著一位自稱「死神」的少女，突然將你強行帶到了神祕的魔法學園，命令你在此學習探案技巧。<br />
-            她的目的，僅僅是為了一宗即將發生的神祕凶案──而那宗凶案的受害者，竟然是「全人類」！
+            You are dead. A girl calling herself a "Death Deity" suddenly whisks you away to a mysterious magic academy to master detective skills.<br />
+            Her sole purpose? A single murder case—where the victim is none other than all of humanity!
           </p>
         </div>
 
@@ -136,22 +136,23 @@
   /* 直立式上下配置容器 */
   .story-layout {
     display: flex;
-    flex-direction: column; /* 讓圖片在上面，文字在下面 */
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: calc(100vh - 130px); /* 扣除 130px 的置頂選單，強制塞滿剩餘的螢幕高度 */
-    max-width: 900px; /* 鎖定最大寬度，避免文字在寬螢幕上拉得太長不好閱讀 */
+    justify-content: center; /* 🎯 修正：從 space-between 改為 center，讓圖文往中間靠攏 */
+    gap: 20px;               /* 📐 核心：精準設定圖片與文字之間「只留 20 像素」的舒適空隙 */
+    height: calc(100vh - 130px);
+    max-width: 900px;
     padding: 20px 0;
   }
 
-  /* 🖼️ 圖片外框（佔 2/3 空間） */
+  /* 🖼️ 圖片外框 */
   .story-image-wrapper {
-    flex: 2; /* 💡 核心：分配 2 等分的空間 */
+    flex: 0 1 auto; /* 🎯 修正：取消強制的 2 等分，讓圖片依據自身大小與螢幕高度自動縮放 */
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-height: 55vh; /* 限制大圖不超過螢幕高度的 55%，防止擠壓到下方的文字 */
+    max-height: 55vh;
     overflow: hidden;
   }
 
@@ -165,12 +166,12 @@
 
   /* 📜 文字外框（佔 1/3 空間） */
   .story-text-wrapper {
-    flex: 1; /* 💡 核心：分配 1 等分的空間 */
+    flex: 0 0 auto; /* 🎯 修正：取消 1 等分分配，改為緊貼圖片下方 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 10px; /* 🤏 縮小文字頂部的內邊距 */
     text-align: center;
   }
 
