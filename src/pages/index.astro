@@ -109,10 +109,139 @@
         </div>
       </section>
 
-      <section id="characters" class="page-section characters-bg">
-        <div class="section-content">
-          <h2>🔍 角色介紹</h2>
-          <p>lynceus, eurydike 等登場人物動態卡片預留區...</p>
+      <!-- 區塊：角色介紹 -->
+      <section id="characters" class="page-section char-bg">
+        <div class="section-content char-layout">
+          <!-- 🏛️ 左側區域：文字資訊、切換箭頭與頭像選單 -->
+          <div class="char-left-zone">
+            <!-- 📜 左側上部：人物故事資訊卡（內含 6 位角色的文字軌道） -->
+            <div class="char-info-window">
+              <div class="char-info-track" id="charInfoTrack">
+                <!-- 角色 1: 主角 / Player (示例) -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">你 (You)</h3>
+                  <span class="char-tag">【特殊屬性：死線探求者】</span>
+                  <p class="char-bio">
+                    被死神少女強行帶到神祕魔法學園的倒楣死者。為了生存，你必須在「玻里蒂亞」內不斷磨練探案技巧，抽絲剝繭揭開即將毀滅全人類的終極凶案。
+                  </p>
+                </div>
+
+                <!-- 角色 2: lynceus -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Lynceus</h3>
+                  <span class="char-tag"
+                    >【特質：超凡洞察 / 醫學直譯風：理性感知過載】</span
+                  >
+                  <p class="char-bio">
+                    思考清晰。拒絕一切古風或晦澀文風的青年。眼前的線索在他腦海中會自動重組，隨時保持著絕對冷靜與客觀的破案直覺。
+                  </p>
+                </div>
+
+                <!-- 角色 3: eurydike -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">Eurydike</h3>
+                  <span class="char-tag"
+                    >【特質：地雷系 / ACG特質風：病嬌】</span
+                  >
+                  <p class="char-bio">
+                    學園深處的神祕少女。言談舉止間絕少使用語氣助詞，語調冰冷而堅定。她似乎掌握了死神與魔法學園之間那道不可告人的禁忌聯繫。
+                  </p>
+                </div>
+
+                <!-- 角色 4: 角色D -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">角色 D</h3>
+                  <span class="char-tag">【特質：待定】</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+
+                <!-- 角色 5: 角色E -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">角色 E</h3>
+                  <span class="char-tag">【特質：待定】</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+
+                <!-- 角色 6: 角色F -->
+                <div class="char-info-slide">
+                  <h3 class="char-name">角色 F</h3>
+                  <span class="char-tag">【特質：待定】</span>
+                  <p class="char-bio">
+                    魔法學園「玻里蒂亞」的登場人物，相關情報與背景故事正在百科全書中逐步解鎖中。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🎮 左側下部：左右箭頭與 6 個角色頭像點選選單 -->
+            <div class="char-nav-wrapper">
+              <!-- ⬅️ 左箭頭 -->
+              <button
+                class="char-arrow-btn"
+                id="charPrevBtn"
+                aria-label="上一個角色">&#10094;</button
+              >
+
+              <!-- 6位角色的橫向點選頭像 -->
+              <div class="char-avatar-menu">
+                <div class="avatar-box active" data-char="0">
+                  <img src="/images/ch_thumb_01.webp" alt="頭像1" />
+                </div>
+                <div class="avatar-box" data-char="1">
+                  <img src="/images/ch_thumb_02.webp" alt="頭像2" />
+                </div>
+                <div class="avatar-box" data-char="2">
+                  <img src="/images/ch_thumb_03.webp" alt="頭像3" />
+                </div>
+                <div class="avatar-box" data-char="3">
+                  <img src="/images/ch_thumb_04.webp" alt="頭像4" />
+                </div>
+                <div class="avatar-box" data-char="4">
+                  <img src="/images/ch_thumb_05.webp" alt="頭像5" />
+                </div>
+                <div class="avatar-box" data-char="5">
+                  <img src="/images/ch_thumb_06.webp" alt="頭像6" />
+                </div>
+              </div>
+
+              <!-- ➡️ 右箭頭 -->
+              <button
+                class="char-arrow-btn"
+                id="charNextBtn"
+                aria-label="下一個角色">&#10095;</button
+              >
+            </div>
+          </div>
+
+          <!-- 🖼️ 右側區域：角色去背全身立繪展示窗 -->
+          <div class="char-right-zone">
+            <div class="char-image-window">
+              <div class="char-image-track" id="charImageTrack">
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_01.webp" alt="角色1立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_02.webp" alt="角色2立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_03.webp" alt="角色3立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_04.webp" alt="角色4立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_05.webp" alt="角色5立繪" />
+                </div>
+                <div class="char-img-slide">
+                  <img src="/images/ch_full_06.webp" alt="角色6立繪" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -512,8 +641,235 @@
     }
   }
 
-  .characters-bg {
-    background: #1a1a3a;
+  /* 🔮 角色介紹背景：放入第三張模糊處理後的背景圖 */
+  .char-bg {
+    background-image: url("/images/char_bg_blur.webp");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  /* 左右分流大佈局（寬度鎖定，重心精準置中） */
+  .char-layout {
+    display: flex;
+    flex-direction: row; /* ↔️ 左右排開 */
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 130px);
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 60px; /* 左右區域之間的舒適間距 */
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+
+  /* ================= 左側區域 ================= */
+  .char-left-zone {
+    flex: 1; /* 分配不擠壓的比例空間 */
+    display: flex;
+    flex-direction: column; /* ↕️ 上面文字，下面頭像 */
+    gap: 30px;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  /* 📜 左上：半透明黑色毛玻璃文字方塊 */
+  .char-info-window {
+    width: 100%;
+    height: 280px; /* 🔒 固定文字視窗高度，切換時網頁絕不跳動 */
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7); /* 65% 透明黑絲絨感 */
+    padding: 35px 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+  }
+
+  /* 文字縱向移動軌道 */
+  .char-info-track {
+    display: flex;
+    flex-direction: column; /* 垂直軌道滾動 */
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .char-info-slide {
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* 明顯粗體角色名字 */
+  .char-name {
+    font-family: "PingFang TC", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    font-weight: 900; /* 🔥 極限加粗 */
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* 金色ACG特質標籤 */
+  .char-tag {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #da9100; /* 金色 */
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  .char-bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #d1d1d1;
+    margin: 0;
+  }
+
+  /* 🎮 左下：左右箭頭與頭像選單外框 */
+  .char-nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+  }
+
+  /* 輕量化精緻箭頭 */
+  .char-arrow-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #aaa;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .char-arrow-btn:hover {
+    background: #da9100;
+    color: #fff;
+    border-color: #da9100;
+    transform: scale(1.08);
+  }
+
+  /* 6 個頭像橫向排開 */
+  .char-avatar-menu {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 單個頭像方塊（仿米哈遊高質感外框） */
+  .avatar-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-box:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: translateY(-3px);
+  }
+
+  /* 🚀 核心：當前選中的角色頭像，外框亮起金色並優雅放大 */
+  .avatar-box.active {
+    border-color: #da9100;
+    box-shadow: 0 0 15px rgba(218, 145, 0, 0.6);
+    transform: scale(1.12) translateY(-3px);
+  }
+
+  /* ================= 右側區域 ================= */
+  .char-right-zone {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* ⚓ 讓角色大立繪貼緊底部站立，更有腳踏實地的空間感 */
+    height: 100%;
+    max-width: 550px;
+  }
+
+  /* 立繪橫向移動視窗 */
+  .char-image-window {
+    width: 100%;
+    height: 75vh; /* 📐 強制讓角色立繪高度吃滿螢幕的 75% */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .char-image-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 絲滑橫移 */
+  }
+
+  .char-img-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .char-img-slide img {
+    height: 100%; /* 立繪等比例吃滿 75vh 高度 */
+    width: auto; /* 寬度自適應，去背圖絕不變形變扁 */
+    object-fit: contain;
+    filter: drop-shadow(
+      0 15px 25px rgba(0, 0, 0, 0.6)
+    ); /* 🔥 神技：為去背透明立繪邊緣加上立體黑影 */
+  }
+
+  /* 📱 RWD 行動端相容：當手機看時自動切換為上下堆疊，防止畫面太擠 */
+  @media (max-width: 1024px) {
+    .char-layout {
+      flex-direction: column-reverse;
+      gap: 30px;
+      padding: 20px;
+    }
+    .char-right-zone {
+      height: 45vh;
+      width: 100%;
+    }
+    .char-image-window {
+      height: 100%;
+    }
+    .char-left-zone {
+      max-width: 100%;
+    }
+    .char-info-window {
+      height: auto;
+      min-height: 200px;
+      padding: 25px;
+    }
+    .avatar-box {
+      width: 45px;
+      height: 45px;
+      border-radius: 8px;
+    }
   }
 
   /* 🌐 語言切換專用樣式 */
@@ -539,6 +895,74 @@
 <!-- 👇 TypeScript 語法安全修復版 輪播圖控制碼 👇 -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // ================= 🔮 6 位角色介紹看板連動控制碼 =================
+    const infoTrack = document.getElementById(
+      "charInfoTrack",
+    ) as HTMLElement | null;
+    const imgTrack = document.getElementById(
+      "charImageTrack",
+    ) as HTMLElement | null;
+    const charPrevBtn = document.getElementById(
+      "charPrevBtn",
+    ) as HTMLButtonElement | null;
+    const charNextBtn = document.getElementById(
+      "charNextBtn",
+    ) as HTMLButtonElement | null;
+    const avatarBoxes = document.querySelectorAll(".avatar-box");
+
+    let currentCharIndex = 0;
+    const totalChars = avatarBoxes.length; // 自動識別為 6 位角色
+
+    if (!infoTrack || !imgTrack || !charPrevBtn || !charNextBtn) return;
+
+    // 🎯 核心更換角色面板函式
+    function updateCharacter(index: number) {
+      currentCharIndex = index;
+
+      // 左側文字縱向移動滾動（百分比向上推）
+      infoTrack!.style.transform = `translateY(-${currentCharIndex * 100}%)`;
+      // 右側立繪橫向滑動切換
+      imgTrack!.style.transform = `translateX(-${currentCharIndex * 100}%)`;
+
+      // 更新 6 個頭像按鈕的金色高亮狀態
+      avatarBoxes.forEach((box, i) => {
+        if (i === currentCharIndex) {
+          box.classList.add("active");
+        } else {
+          box.classList.remove("active");
+        }
+      });
+    }
+
+    // ⬅️ 點擊左鍵切換上一個角色
+    charPrevBtn.addEventListener("click", () => {
+      let index = currentCharIndex - 1;
+      if (index < 0) index = totalChars - 1;
+      updateCharacter(index);
+    });
+
+    // ➡️ 點擊右鍵切換下一個角色
+    charNextBtn.addEventListener("click", () => {
+      let index = currentCharIndex + 1;
+      if (index >= totalChars) index = 0;
+      updateCharacter(index);
+    });
+
+    // 👤 點擊任意頭像方塊直接無縫跳轉
+    avatarBoxes.forEach((box) => {
+      box.addEventListener("click", (e: Event) => {
+        // 安全尋找 data-char 屬性
+        const currentTarget = e.currentTarget as HTMLElement | null;
+        if (currentTarget) {
+          const attr = currentTarget.getAttribute("data-char");
+          if (attr) {
+            const index = parseInt(attr);
+            updateCharacter(index);
+          }
+        }
+      });
+    });
+
     // 🎯 使用 HTMLTrackElement 和 HTMLButtonElement 明確告訴 VS Code 元件類型，並加上安全判斷
     const track = document.getElementById(
       "carouselTrack",
