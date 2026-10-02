@@ -40,33 +40,48 @@
       <section id="hero" class="page-section hero-bg">
         <!-- 👇 新增：鎖定在首頁右下角的圖片按鈕容器 👇 -->
         <div class="hero-action-buttons">
-          <!-- 📦 按鈕一：試玩下載 (直接連結至 PC build release 的 zip 檔) -->
-          <a
-            href="https://github.com/pa-casefile/pa-casefile-pc/releases/download/v0.1/PrudentiaAcademy-0.1-pc.zip"
-            class="hero-btn-link"
-            title="PC体験版をダウンロード"
-          >
-            <img
-              src="/images/btn_download_ja.webp"
-              alt="体験版ダウンロード"
-              class="action-btn-img"
-            />
-          </a>
+          <!-- 👇 新增：置頂的 X 社群按鈕盒子 👇 -->
+          <div class="hero-x-box">
+            <a
+              href="https://x.com/pa_casefile"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-x-link"
+              title="公式Xをフォローして最新の開発情報をチェック"
+            >
+              <img src="/images/x_logo.webp" alt="公式X" class="x-btn-img" />
+            </a>
+          </div>
+          <!-- 📦 下方原本的雙按鈕 -->
+          <div class="game-buttons-row">
+            <!-- 📦 按鈕一：試玩下載 (直接連結至 PC build release 的 zip 檔) -->
+            <a
+              href="https://github.com/pa-casefile/pa-casefile-pc/releases/download/v0.1/PrudentiaAcademy-0.1-pc.zip"
+              class="hero-btn-link"
+              title="PC体験版をダウンロード"
+            >
+              <img
+                src="/images/btn_download_ja.webp"
+                alt="体験版ダウンロード"
+                class="action-btn-img"
+              />
+            </a>
 
-          <!-- 🌐 按鈕二：網上試玩 (開新視窗/新分頁連至 web build 的 GitHub Pages) -->
-          <a
-            href="https://pa-casefile.github.io/pa-casefile-web/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hero-btn-link"
-            title="新しいタブでブラウザ版をプレイ"
-          >
-            <img
-              src="/images/btn_play_ja.webp"
-              alt="ブラウザでプレイ"
-              class="action-btn-img"
-            />
-          </a>
+            <!-- 🌐 按鈕二：網上試玩 (開新視窗/新分頁連至 web build 的 GitHub Pages) -->
+            <a
+              href="https://pa-casefile.github.io/pa-casefile-web/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-btn-link"
+              title="新しいタブでブラウザ版をプレイ"
+            >
+              <img
+                src="/images/btn_play_ja.webp"
+                alt="ブラウザでプレイ"
+                class="action-btn-img"
+              />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -371,62 +386,91 @@
     height: 100vh;
   }
 
-  /* 🎯 核心：將按鈕容器強制死鎖在首頁的「右下角」 */
+  /* 🎯 核心控制：大容器改為「垂直上下堆疊」 */
   .hero-action-buttons {
     position: absolute;
-    right: 60px; /* ↔️ 距離螢幕右邊緣 60 像素 */
-    bottom: 50px; /* ↕️ 距離螢幕下邊緣 50 像素 */
+    right: 60px;
+    bottom: 50px;
     display: flex;
-    flex-direction: row; /* ↔️ 兩個按鈕橫向排開（如果你希望上下堆疊，可以改成 column） */
-    gap: 20px; /* 📐 按鈕與按鈕之間保持 20 像素的舒適間距 */
-    z-index: 20; /* 🔝 確保按鈕浮在主視覺最上層，玩家絕對點得到 */
+    flex-direction: column; /* 🎯 修正：改為直向排列 */
+    align-items: flex-end; /* 📐 核心：讓 X 按鈕向右對齊，與下方的按鈕邊緣完美對齊 */
+    gap: 15px; /* ↕️ X 按鈕與下方按鈕之間拉出 15 像素的精緻空隙 */
+    z-index: 20;
   }
 
-  /* 超連結外框控制 */
-  .hero-btn-link {
+  /* 🐦 X 按鈕專用獨立盒子 */
+  .hero-x-box {
+    display: block;
+  }
+
+  .hero-x-link {
     display: block;
     text-decoration: none;
   }
 
-  /* 🖼️ 圖片按鈕本體外觀與尺寸控制 */
-  .action-btn-img {
-    height: 65px; /* 🔒 鎖定圖片按鈕的高度為 65 像素（寬度會依據你設計的圖片比例自動等比縮放，絕不變形） */
+  /* 🖼️ X 官方黑色/白色 Logo 尺寸控制 */
+  .x-btn-img {
+    height: 40px; /* 🔒 寬厚度控制在 40 像素（比遊戲按鈕稍小，維持主次分明的視覺階層） */
     width: auto;
     display: block;
     object-fit: contain;
     cursor: pointer;
 
-    /* 🪄 加入細微的亮框與陰影，讓圖片按鈕在多變的背景大圖前依舊立體、顯眼 */
+    /* 🪄 給 X 加上白邊微光與黑影，防止它在深夜或暗色背景中完全隱形 */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6))
+      drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* 🔥 X 按鈕滑鼠懸停（Hover）：仿官方的滑順放大 */
+  .x-btn-img:hover {
+    transform: scale(1.1); /* 🆙 懸停時優雅放大 1.1 倍 */
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7)) brightness(1.2); /* 💡 微微提亮 */
+  }
+
+  /* 📦 下方雙按鈕橫向並排盒子 */
+  .game-buttons-row {
+    display: flex;
+    flex-direction: row; /* ↔️ 原本的雙按鈕繼續保持橫向並排 */
+    gap: 20px;
+  }
+
+  /* 🖼️ 原本的遊戲按鈕樣式保持不動 */
+  .action-btn-img {
+    height: 65px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    cursor: pointer;
     filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
     transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-
-  /* 🔥 滑鼠懸停（Hover）動態回饋：仿大廠按鈕微光與上浮特效 */
   .action-btn-img:hover {
-    transform: translateY(
-      -4px
-    ); /* 🆙 點擊前微微上浮 4 像素，極具靈動的反饋感 */
-    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.65)) brightness(1.1); /* 💡 微微加亮圖片 1.1 倍，提醒玩家「這可以點擊」 */
+    transform: translateY(-4px);
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.65)) brightness(1.1);
   }
-
-  /* ⚡ 點擊瞬間（Active）反饋 */
   .action-btn-img:active {
-    transform: translateY(
-      -1px
-    ); /* ⏬ 點擊下去時輕微下壓，模擬真實按鈕按下去的紮實體感 */
+    transform: translateY(-1px);
   }
 
-  /* 📱 貼心 RWD 行動端優化：當玩家用直立手機看網頁時，自動把按鈕移到畫面中下方正中央，防止縮小擠偏 */
+  /* 📱 手機端排版校正：當玩家用手機看時，全部歸位居中堆疊 */
   @media (max-width: 768px) {
     .hero-action-buttons {
       right: 50%;
-      transform: translateX(50%); /* 🎯 強制在手機螢幕水平正置中 */
-      bottom: 40px;
+      transform: translateX(50%);
+      bottom: 30px;
+      align-items: center; /* 📱 手機上改為水平正居中對齊 */
+      gap: 12px;
+    }
+    .game-buttons-row {
       gap: 15px;
     }
     .action-btn-img {
-      height: 50px; /* 📱 手機螢幕較小，按鈕高度微幅縮小到 50 像素 */
+      height: 50px;
     }
+    .x-btn-img {
+      height: 35px;
+    } /* 📱 手機版 X 按鈕同步縮小到 35 像素 */
   }
 
   /* 🔮 1. 故事區域背景：放入你的模糊背景大圖 */
