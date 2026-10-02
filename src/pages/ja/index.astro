@@ -249,6 +249,7 @@
   </body>
 </html>
 
+
 <style>
   /* 這裡的 CSS 樣式三個語言檔案都通用，我把多語言的樣式寫在最下方 */
   html {
@@ -642,8 +643,245 @@
     }
   }
 
-  .characters-bg {
-    background: #1a1a3a;
+  /* 🔮 角色介紹背景：放入第三張模糊處理後的背景圖 */
+  .char-bg {
+    background-image: url("/images/char_bg_blur.webp");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  /* 左右分流大佈局（寬度鎖定，重心精準置中） */
+  .char-layout {
+    display: flex;
+    flex-direction: row; /* ↔️ 左右排開 */
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 130px);
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 60px; /* 左右區域之間的舒適間距 */
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+
+  /* ================= 左側區域 ================= */
+  .char-left-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 35px; /* 📐 微調左側元件之間的垂直間距，讓整體視覺更舒展 */
+    max-width: 600px;
+    width: 100%;
+  }
+
+  /* 📜 左上：半透明黑色毛玻璃文字方塊（同步加大版） */
+  .char-info-window {
+    width: 100%;
+    height: 380px; /* 🆙 從 280px 大幅加高到 380px！完美匹配右側 80vh 立繪的視覺體量 */
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 45px; /* 📐 內邊距同步加寬，讓厚重的中文字體閱讀起來像精美設定集 */
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+  }
+
+  /* 文字縱向移動軌道 */
+  .char-info-track {
+    display: flex;
+    flex-direction: column; /* 垂直軌道滾動 */
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .char-info-slide {
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* 明顯粗體角色名字 */
+  .char-name {
+    font-family: "PingFang TC", "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    font-weight: 900; /* 🔥 極限加粗 */
+    font-size: 2.4rem;
+    color: #fff;
+    margin: 0 0 8px 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* 金色ACG特質標籤 */
+  .char-tag {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #da9100; /* 金色 */
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  .char-bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #d1d1d1;
+    margin: 0;
+  }
+
+  /* 🎮 左下：左右箭頭與頭像選單外框 */
+  .char-nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+  }
+
+  /* 🎮 左下：左右箭頭按鈕優化版（徹底告別隱形） */
+  .char-arrow-btn {
+    /* 🎯 校正：從淡白透明改為有厚度的深色半透明，完美對齊特色區塊的視覺感 */
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff; /* 🤍 靜止時箭頭直接使用純白色，大幅提升易讀性 */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* ✨ 補上一圈優雅的微光細邊框，在深色背景中更顯眼 */
+
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+
+    /* 🌫️ 加上輕微毛玻璃模糊，讓按鈕在雜亂的背景前依舊維持高清晰度 */
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* 🟢 Hover 滑鼠懸停動態回饋 */
+  .char-arrow-btn:hover {
+    background: #da9100; /* 🔥 懸停時一體化轉為亮眼金色 */
+    color: #ffffff;
+    border-color: #da9100;
+    transform: scale(1.1); /* 🆙 微微放大，增加點擊反饋感 */
+    box-shadow: 0 0 15px rgba(218, 145, 0, 0.5); /* 邊緣亮起金色微光 */
+  }
+
+  /* 6 個頭像橫向排開 */
+  .char-avatar-menu {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 單個頭像方塊（高質感外框） */
+  .avatar-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-box:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: translateY(-3px);
+  }
+
+  /* 🚀 核心：當前選中的角色頭像，外框亮起金色並優雅放大 */
+  .avatar-box.active {
+    border-color: #da9100;
+    box-shadow: 0 0 15px rgba(218, 145, 0, 0.6);
+    transform: scale(1.12) translateY(-3px);
+  }
+
+  /* ================= 右側區域 ================= */
+  .char-right-zone {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* ⚓ 保持靠底站立，立繪變大後更有破框而出的立體感 */
+    height: 100%;
+    max-width: 600px; /* 📐 寬度上限微調增加 50px，給 80vh 立繪提供完美的橫向伸展空間 */
+  }
+
+  /* 立繪橫向移動視窗 */
+  .char-image-window {
+    width: 100%;
+    height: 80vh; /* 🎯 核心：依你所願，強制讓角色大立繪吃滿螢幕區域的 80% 高度 */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .char-image-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 絲滑橫移 */
+  }
+
+  .char-img-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .char-img-slide img {
+    height: 100%; /* 🔒 立繪等比例完美吃滿最新的 80vh 高度 */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(
+      0 15px 30px rgba(0, 0, 0, 0.65)
+    ); /* 繞過透明背景的實體黑影同步加深 */
+  }
+
+  /* 📱 RWD 行動端相容：當手機看時自動切換為上下堆疊，防止畫面太擠 */
+  @media (max-width: 1024px) {
+    .char-layout {
+      flex-direction: column-reverse;
+      gap: 30px;
+      padding: 20px;
+    }
+    .char-right-zone {
+      height: 45vh;
+      width: 100%;
+    }
+    .char-image-window {
+      height: 100%;
+    }
+    .char-left-zone {
+      max-width: 100%;
+    }
+    .char-info-window {
+      height: auto;
+      min-height: 200px;
+      padding: 25px;
+    }
+    .avatar-box {
+      width: 45px;
+      height: 45px;
+      border-radius: 8px;
+    }
   }
 
   /* 🌐 語言切換專用樣式 */
@@ -669,6 +907,74 @@
 <!-- 👇 TypeScript 語法安全修復版 輪播圖控制碼 👇 -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // ================= 🔮 6 位角色介紹看板連動控制碼 =================
+    const infoTrack = document.getElementById(
+      "charInfoTrack",
+    ) as HTMLElement | null;
+    const imgTrack = document.getElementById(
+      "charImageTrack",
+    ) as HTMLElement | null;
+    const charPrevBtn = document.getElementById(
+      "charPrevBtn",
+    ) as HTMLButtonElement | null;
+    const charNextBtn = document.getElementById(
+      "charNextBtn",
+    ) as HTMLButtonElement | null;
+    const avatarBoxes = document.querySelectorAll(".avatar-box");
+
+    let currentCharIndex = 0;
+    const totalChars = avatarBoxes.length; // 自動識別為 6 位角色
+
+    if (!infoTrack || !imgTrack || !charPrevBtn || !charNextBtn) return;
+
+    // 🎯 核心更換角色面板函式
+    function updateCharacter(index: number) {
+      currentCharIndex = index;
+
+      // 左側文字縱向移動滾動（百分比向上推）
+      infoTrack!.style.transform = `translateY(-${currentCharIndex * 100}%)`;
+      // 右側立繪橫向滑動切換
+      imgTrack!.style.transform = `translateX(-${currentCharIndex * 100}%)`;
+
+      // 更新 6 個頭像按鈕的金色高亮狀態
+      avatarBoxes.forEach((box, i) => {
+        if (i === currentCharIndex) {
+          box.classList.add("active");
+        } else {
+          box.classList.remove("active");
+        }
+      });
+    }
+
+    // ⬅️ 點擊左鍵切換上一個角色
+    charPrevBtn.addEventListener("click", () => {
+      let index = currentCharIndex - 1;
+      if (index < 0) index = totalChars - 1;
+      updateCharacter(index);
+    });
+
+    // ➡️ 點擊右鍵切換下一個角色
+    charNextBtn.addEventListener("click", () => {
+      let index = currentCharIndex + 1;
+      if (index >= totalChars) index = 0;
+      updateCharacter(index);
+    });
+
+    // 👤 點擊任意頭像方塊直接無縫跳轉
+    avatarBoxes.forEach((box) => {
+      box.addEventListener("click", (e: Event) => {
+        // 安全尋找 data-char 屬性
+        const currentTarget = e.currentTarget as HTMLElement | null;
+        if (currentTarget) {
+          const attr = currentTarget.getAttribute("data-char");
+          if (attr) {
+            const index = parseInt(attr);
+            updateCharacter(index);
+          }
+        }
+      });
+    });
+
     // 🎯 使用 HTMLTrackElement 和 HTMLButtonElement 明確告訴 VS Code 元件類型，並加上安全判斷
     const track = document.getElementById(
       "carouselTrack",
