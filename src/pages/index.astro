@@ -741,11 +741,13 @@
     gap: 15px;
   }
 
-  /* 輕量化精緻箭頭 */
+  /* 🎮 左下：左右箭頭按鈕優化版（徹底告別隱形） */
   .char-arrow-btn {
-    background: rgba(255, 255, 255, 0.05);
-    color: #aaa;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* 🎯 校正：從淡白透明改為有厚度的深色半透明，完美對齊特色區塊的視覺感 */
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff; /* 🤍 靜止時箭頭直接使用純白色，大幅提升易讀性 */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* ✨ 補上一圈優雅的微光細邊框，在深色背景中更顯眼 */
+
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -753,14 +755,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    font-size: 1.2rem;
+
+    /* 🌫️ 加上輕微毛玻璃模糊，讓按鈕在雜亂的背景前依舊維持高清晰度 */
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
+  /* 🟢 Hover 滑鼠懸停動態回饋 */
   .char-arrow-btn:hover {
-    background: #da9100;
-    color: #fff;
+    background: #da9100; /* 🔥 懸停時一體化轉為亮眼金色 */
+    color: #ffffff;
     border-color: #da9100;
-    transform: scale(1.08);
+    transform: scale(1.1); /* 🆙 微微放大，增加點擊反饋感 */
+    box-shadow: 0 0 15px rgba(218, 145, 0, 0.5); /* 邊緣亮起金色微光 */
   }
 
   /* 6 個頭像橫向排開 */
@@ -771,7 +781,7 @@
     align-items: center;
   }
 
-  /* 單個頭像方塊（仿米哈遊高質感外框） */
+  /* 單個頭像方塊（高質感外框） */
   .avatar-box {
     width: 55px;
     height: 55px;
