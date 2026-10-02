@@ -54,7 +54,7 @@
               「この事件さえ解決すれば、お前は生き残れる。」
             </p>
             <p class="story-desc">
-              あなたは死んだ。「死神」を自称する謎の少女によって、突如として魔法学校へと連れ去られた。<br
+              「死神」を自称する謎の少女によって、異世界の魔法学校へと連れ去られたあなた。<br
               />
               そこで探偵技術を学ぶよう命じられた目的は、ある一つの殺人事件のため。<br
               />
@@ -169,9 +169,75 @@
     background-size: cover; /* 🔒 核心：強制圖片等比例縮放，完美撐滿整個螢幕畫面，絕不變形 */
     position: relative;
   }
-  /* 🔮 劇情內容區塊背景與佈局 */
+  /* 🔮 1. 故事區域背景：放入你的模糊背景大圖 */
   .story-bg {
-    background: #0d0d1a; /* 深邃的神祕黑藍色，襯托探案與死神氛圍 */
+    background-image: url("/images/story_bg_blur.webp"); /* 🎯 這裡換上你模糊化處理後的大背景圖 */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  /* 🖼️ 2. 微調截圖樣式：讓它在模糊背景前更立體 */
+  .story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px; /* 稍微加大圓角，更顯精緻 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); /* 加深陰影，讓截圖從背景中「跳」出來 */
+  }
+
+  /* 📜 3. 核心：將文字用半透明黑色方塊包起來 */
+  .story-text-wrapper {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px; /* 📐 限制方塊的最大寬度，避免在寬螢幕上拉得太寬 */
+    text-align: center;
+
+    /* 👇 半透明黑色方塊的核心程式碼 👇 */
+    background: rgba(
+      0,
+      0,
+      0,
+      0.65
+    ); /* 🖤 黑色底色，0.65 代表 65% 的透明度，既能擋住背景，又能隱約透出後方色彩 */
+    padding: 25px 40px; /* ↕️ 幫方塊內部留出上下 25px、左右 40px 的舒適閱讀空間 */
+    border-radius: 16px; /* ⚪ 柔和的圓角外框 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* ✨ 極細的半透明白邊，能幫方塊增加一圈優雅的高級「科技/魔法邊框感」 */
+    backdrop-filter: blur(
+      5px
+    ); /* 🌫️ 如果你希望黑色方塊自己也有二次模糊效果，可以加上這行（選用） */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* 底部加上柔和陰影 */
+  }
+
+  /* 調整字體邊距，讓它在方塊內更好看 */
+  .story-highlight {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #da9100;
+    margin-top: 0; /* 🆕 消除方塊內頂部的多餘空間 */
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* 給金字加上黑陰影，更立體 */
+  }
+
+  .story-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #f0f0f0; /* 稍微調亮白字，對比度更高 */
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* 給白字加上黑陰影 */
+  }
+
+  /* 📱 行動端微調：讓手機版玩家看時，黑框不會擠滿螢幕 */
+  @media (max-width: 768px) {
+    .story-text-wrapper {
+      padding: 20px 20px;
+      width: 90%; /* 在手機上左右保留一點點邊距，看起來像一張懸浮的卡片 */
+    }
   }
 
   /* 直立式上下配置容器 */
@@ -195,25 +261,6 @@
     width: 100%;
     max-height: 55vh;
     overflow: hidden;
-  }
-
-  .story-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 📐 圖片等比例縮放，完整顯示整張 16:9 遊戲截圖，絕不外切 */
-    border-radius: 8px; /* 微幅圓角，增加網頁精緻度 */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* 給截圖加上立體陰影 */
-  }
-
-  /* 📜 文字外框（佔 1/3 空間） */
-  .story-text-wrapper {
-    flex: 0 0 auto; /* 🎯 修正：取消 1 等分分配，改為緊貼圖片下方 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding-top: 10px; /* 🤏 縮小文字頂部的內邊距 */
-    text-align: center;
   }
 
   /* 金色粗體標語 */
