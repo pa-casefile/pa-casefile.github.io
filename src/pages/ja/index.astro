@@ -351,24 +351,21 @@
     padding: 10px 0;
   }
 
-  /* 🎡 輪播圖外框：放大最大寬度限制，配合高螢幕展示 */
+  /* 🎡 輪播圖主容器 */
   .carousel-container {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1300px; /* 🆙 從 850px 大幅擴張到 1300px，確保大螢幕下圖片能橫向伸展 */
-    position: relative;
-    gap: 25px;
+    position: relative; /* 🎯 設定為相對定位，作為內層懸浮按鈕的基準點 */
   }
 
-  /* 🖼️ 中央截圖視窗：70% 高度 + 16:9 寬度同步放大版 */
+  /* 🖼️ 中央截圖視窗：100% 擺脫按鈕擠壓，鎖定 16:9 巨型黃金比例 */
   .carousel-window {
-    /* 🎯 核心：依據 70vh 的高度，完美逆向計算出 16:9 的對應寬度 */
-    height: 70vh; /* 🔒 依你所願，嚴格鎖定高度為螢幕區域的 70% */
+    height: 70vh; /* 🔒 鎖定高度為螢幕區域的 70% */
     max-height: 70vh;
-    width: 124.44vh; /* 📐 關鍵：70乘以(16/9)的結果，確保寬度同步放大，圖片絕對吃滿方塊 */
-    max-width: 100%; /* 🛡️ 安全防護：萬一玩家的螢幕太窄，寬度最多撐滿外框，絕對不超出螢幕跑版 */
+    width: 124.44vh; /* 📐 70vh * (16/9)，此時沒有按鈕強推，寬度會 100% 精準拉開 */
+    max-width: 85vw; /* 🛡️ 安全防護：限制最寬只能佔螢幕寬度的 85%，預留左右空間，大螢幕下絕對不跑版 */
 
     overflow: hidden;
     border-radius: 16px;
@@ -377,7 +374,7 @@
     background: rgba(0, 0, 0, 0.4);
   }
 
-  /* 🏃 圖片軌道：確保軌道大小與視窗完美同步 */
+  /* 🏃 圖片軌道 */
   .carousel-track {
     display: flex;
     width: 100%;
@@ -385,7 +382,6 @@
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  /* 每一個張圖片的容器 */
   .carousel-slide {
     min-width: 100%;
     height: 100%;
@@ -394,11 +390,15 @@
   .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 🚀 修正：改回 cover，因為現在方塊已經是完美的 16:9 大小，cover 會讓截圖毫無縫隙地填滿整個巨型方塊！ */
+    object-fit: cover; /* 📐 方塊形狀精準後，cover 會讓 16:9 的遊戲截圖嚴絲合縫完美填滿 */
   }
 
-  /* ⬅️ ➡️ 左右切換按鈕樣式 */
+  /* ⬅️ ➡️ 左右切換按鈕：改成「懸浮」模式，絕對不佔寬度空間 */
   .carousel-btn {
+    position: absolute; /* 🚀 核心修改：改為絕對定位，讓它像幽靈一樣浮在圖片上方 */
+    top: 50%; /* ↕️ 垂直居中 */
+    transform: translateY(-50%); /* ↕️ 完美對齊中心點 */
+
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -412,13 +412,27 @@
     justify-content: center;
     transition: all 0.2s;
     user-select: none;
-    z-index: 10;
+    z-index: 10; /* 🔝 確保按鈕永遠浮在圖片的最上層，點得到 */
   }
 
+  /* 🎯 精準定位左、右按鈕的懸浮座標（剛好貼在 16:9 方塊的兩側外緣） */
+  .prev-btn {
+    left: calc(
+      50% - (124.44vh / 2) - 80px
+    ); /* 🔍 從中央往左推半個大圖寬度，再外留 80px 距離 */
+  }
+
+  .next-btn {
+    right: calc(
+      50% - (124.44vh / 2) - 80px
+    ); /* 🔍 從中央往右推半個大圖寬度，再外留 80px 距離 */
+  }
+
+  /*  Hover 動態回饋 */
   .carousel-btn:hover {
     background: #da9100;
     border-color: #da9100;
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1); /* 🔥 注意：因為有垂直居中，放大時要保留 translateY */
   }
 
   /* 🟢 下方圓點指示器樣式 */
@@ -443,25 +457,31 @@
     border-radius: 5px;
   }
 
-  /* 📱 貼心 RWD 手機版優化：當玩家用直立手機看時，高度自適應，並把箭頭浮動在圖片上，防止圖片被擠小 */
-  @media (max-width: 1024px) {
-    .carousel-window {
-      height: auto; /* 手機版不鎖定 80vh（因為手機太直），改用 16:9 自然撐開最適合閱讀 */
-      max-height: 50vh;
-    }
-    .carousel-container {
-      gap: 0;
-    }
-    .carousel-btn {
-      position: absolute;
-      width: 45px;
-      height: 45px;
-    }
+  /* 📱 貼心行動端/小螢幕防爆優化：萬一螢幕不夠寬，自動把按鈕收進圖片內部 */
+  @media (max-width: 1400px) {
     .prev-btn {
-      left: 10px;
+      left: 20px;
+      transform: translateY(-50%);
     }
     .next-btn {
-      right: 10px;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+    .prev-btn:hover,
+    .next-btn:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .carousel-window {
+      height: auto;
+      max-height: 50vh;
+      width: 100%;
+    }
+    .carousel-btn {
+      width: 45px;
+      height: 45px;
     }
   }
 
