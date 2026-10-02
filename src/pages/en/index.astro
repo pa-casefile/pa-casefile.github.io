@@ -60,13 +60,52 @@
         </div>
       </section>
 
+      <!-- 區塊：遊戲特式 -->
       <section id="features" class="page-section features-bg">
-        <div class="section-content">
-          <h2>🏫 Features</h2>
-          <p>
-            Character Raising Sim, Magic Academy Life, Investigation &
-            Deduction...
-          </p>
+        <div class="section-content features-layout">
+          <h2>🏫 遊戲特式</h2>
+
+          <!-- 🎡 輪播圖主容器 -->
+          <div class="carousel-container">
+            <!-- ⬅️ 左切換按鈕 -->
+            <button
+              class="carousel-btn prev-btn"
+              id="prevBtn"
+              aria-label="上一張">&#10094;</button
+            >
+
+            <!-- 🖼️ 中央截圖視窗 -->
+            <div class="carousel-window">
+              <div class="carousel-track" id="carouselTrack">
+                <!-- 截圖 1：角色養成 -->
+                <div class="carousel-slide">
+                  <img src="/images/feature_01.webp" alt="角色養成系統" />
+                </div>
+                <!-- 截圖 2：魔法學園 -->
+                <div class="carousel-slide">
+                  <img src="/images/feature_02.webp" alt="魔法學園生活" />
+                </div>
+                <!-- 截圖 3：搜查推理 -->
+                <div class="carousel-slide">
+                  <img src="/images/feature_03.webp" alt="偵探搜查推理" />
+                </div>
+              </div>
+            </div>
+
+            <!-- ➡️ 右切換按鈕 -->
+            <button
+              class="carousel-btn next-btn"
+              id="nextBtn"
+              aria-label="下一張">&#10095;</button
+            >
+          </div>
+
+          <!-- 🟢 下方圓點指示器 -->
+          <div class="carousel-dots" id="carouselDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
         </div>
       </section>
 
@@ -289,9 +328,144 @@
       line-height: 1.6;
     }
   }
+  /* 🏫 遊戲特式背景：放入模糊處理後的特式背景圖 */
   .features-bg {
-    background: #121225;
+    background-image: url("/images/features_bg_blur.webp"); /* 🎯 換上你的第二張模糊背景圖 */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
   }
+
+  .features-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    height: calc(100vh - 130px);
+    width: 100%;
+  }
+
+  .features-layout h2 {
+    font-size: 2.2rem;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+  }
+
+  /* 🎡 輪播圖外框（包裹箭頭與視窗） */
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 850px; /* 🔒 鎖定方塊最大寬度，完美對齊故事區塊 */
+    position: relative;
+    gap: 20px;
+  }
+
+  /* 🖼️ 中央截圖視窗（隱藏溢出的圖片） */
+  .carousel-window {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 📐 強制鎖定 16:9 遊戲截圖黃金比例 */
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  /* 🏃 圖片軌道（橫向排列，切換時走這條路） */
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 💫 仿手遊官網的流暢滑動體感 */
+  }
+
+  /* 每一個張圖片的容器 */
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 讓截圖完美填滿 16:9 方塊 */
+  }
+
+  /* ⬅️ ➡️ 左右切換按鈕樣式 */
+  .carousel-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* 圓形按鈕 */
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .carousel-btn:hover {
+    background: #da9100; /* 懸停時轉為金色 */
+    border-color: #da9100;
+    transform: scale(1.1);
+  }
+
+  /* 🟢 下方圓點指示器樣式 */
+  .carousel-dots {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3); /* 未選中的圓點半透明 */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .dot.active {
+    background: #da9100; /* 當前選中的圓點變成亮眼金色 */
+    width: 24px; /* 🚀 仿米哈遊設計：選中時圓點會「變長」，極具現代高級感 */
+    border-radius: 5px;
+  }
+
+  /* 📱 手機版調整：把兩側箭頭移到圖片上方，防止擠壓螢幕 */
+  @media (max-width: 768px) {
+    .carousel-container {
+      gap: 10px;
+    }
+    .carousel-btn {
+      position: absolute;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .prev-btn {
+      left: 15px;
+    }
+    .next-btn {
+      right: 15px;
+    }
+  }
+
   .characters-bg {
     background: #1a1a3a;
   }
@@ -313,3 +487,69 @@
     font-weight: bold;
   }
 </style>
+
+<!-- 👇 TypeScript 語法安全修復版 輪播圖控制碼 👇 -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 🎯 使用 HTMLTrackElement 和 HTMLButtonElement 明確告訴 VS Code 元件類型，並加上安全判斷
+    const track = document.getElementById(
+      "carouselTrack",
+    ) as HTMLElement | null;
+    const prevBtn = document.getElementById(
+      "prevBtn",
+    ) as HTMLButtonElement | null;
+    const nextBtn = document.getElementById(
+      "nextBtn",
+    ) as HTMLButtonElement | null;
+    const dots = document.querySelectorAll(".dot");
+
+    let currentIndex = 0;
+    const totalSlides = dots.length;
+
+    // 如果關鍵元件沒抓到，就直接終止，避免網頁崩潰（這能讓 VS Code 完全閉嘴）
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // 🔒 幫 index 參數明確指定為 'number' 類型，解決 implicitly has an 'any' type 的警告
+    function updateCarousel(index: number) {
+      currentIndex = index;
+      track!.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    // ⬅️ 點擊左鍵
+    prevBtn.addEventListener("click", () => {
+      let index = currentIndex - 1;
+      if (index < 0) index = totalSlides - 1;
+      updateCarousel(index);
+    });
+
+    // ➡️ 點擊右鍵
+    nextBtn.addEventListener("click", () => {
+      let index = currentIndex + 1;
+      if (index >= totalSlides) index = 0;
+      updateCarousel(index);
+    });
+
+    // 🟢 點擊下方小圓點直接跳轉
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e: Event) => {
+        // 🎯 將 e.target 強制轉換為 HTMLElement 類型，這樣就能完美使用 getAttribute 功能
+        const target = e.target as HTMLElement | null;
+        if (target) {
+          const attr = target.getAttribute("data-index");
+          if (attr) {
+            const index = parseInt(attr);
+            updateCarousel(index);
+          }
+        }
+      });
+    });
+  });
+</script>
