@@ -37,8 +37,7 @@
   <main class="one-page-scroll">
     <section id="hero" class="page-section hero-bg">
       <div class="section-content">
-        <h1>🎮 遊戲主視覺與標題</h1>
-        <p>最新試玩版 / Web 網頁版一鍵開玩按鈕預留區</p>
+		
       </div>
     </section>
 
@@ -110,7 +109,13 @@
     box-sizing: border-box;
   }
   .section-content { max-width: 1000px; width: 100%; padding: 40px; text-align: center; }
-  .hero-bg { background: #121225; }
+  .hero-bg {
+    background-image: url('/images/main_title.webp'); /* 🎯 精準讀取你存放在 public/images/ 的大圖 */
+    background-position: center center;              /* 📐 圖片永遠保持置中 */
+    background-repeat: no-repeat;                     /* 🚫 圖片太大或太小時，絕對不重複磁磚拼貼 */
+    background-size: cover;                           /* 🔒 核心：強制圖片等比例縮放，完美撐滿整個螢幕畫面，絕不變形 */
+    position: relative;
+  }
   .story-bg { background: #1a1a3a; }
   .features-bg { background: #121225; }
   .characters-bg { background: #1a1a3a; }
