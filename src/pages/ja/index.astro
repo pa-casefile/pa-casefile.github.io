@@ -362,13 +362,14 @@
     gap: 25px;
   }
 
-  /* 🖼️ 中央截圖視窗：核心修改區域 */
+  /* 🖼️ 中央截圖視窗：70% 高度 + 16:9 寬度同步放大版 */
   .carousel-window {
-    width: 100%;
-    /* 📐 保持 16:9 比例的同時，透過 max-height 與 min-height 鎖定螢幕高度佔比 */
-    aspect-ratio: 16 / 9;
-    height: 80vh; /* 🎯 核心：強制讓圖片高度佔據整個螢幕可視區域的 80% */
-    max-height: 80vh; /* 🔒 嚴格鎖定上限為 80% 高度 */
+    /* 🎯 核心：依據 70vh 的高度，完美逆向計算出 16:9 的對應寬度 */
+    height: 70vh; /* 🔒 依你所願，嚴格鎖定高度為螢幕區域的 70% */
+    max-height: 70vh;
+    width: 124.44vh; /* 📐 關鍵：70乘以(16/9)的結果，確保寬度同步放大，圖片絕對吃滿方塊 */
+    max-width: 100%; /* 🛡️ 安全防護：萬一玩家的螢幕太窄，寬度最多撐滿外框，絕對不超出螢幕跑版 */
+
     overflow: hidden;
     border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
@@ -376,7 +377,7 @@
     background: rgba(0, 0, 0, 0.4);
   }
 
-  /* 🏃 圖片軌道 */
+  /* 🏃 圖片軌道：確保軌道大小與視窗完美同步 */
   .carousel-track {
     display: flex;
     width: 100%;
@@ -393,7 +394,7 @@
   .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* 💡 從 cover 改為 contain，這樣不管任何螢幕比例，截圖內邊緣文字都絕對不會被吃掉，會完整顯示 */
+    object-fit: cover; /* 🚀 修正：改回 cover，因為現在方塊已經是完美的 16:9 大小，cover 會讓截圖毫無縫隙地填滿整個巨型方塊！ */
   }
 
   /* ⬅️ ➡️ 左右切換按鈕樣式 */
