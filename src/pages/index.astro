@@ -1,93 +1,151 @@
 ---
-// 這裡可以寫 JavaScript 或 Astro 的設定，現在先保持空白
+// src/pages/index.astro
+// 這裡叫做 Frontmatter（有前後三個減號），用來放網頁設定
+// 目前保持空白即可
 ---
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔮 魔法學園養成冒險遊戲 | 官方網站</title>
+</head>
+<body>
 
-<html lang="zh-Hant-TW">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<!-- 這裡是瀏覽器分頁上顯示的標題 -->
-		<title>文字養成冒險遊戲《普魯登蒂亞學園事件簿》官方網站</title>
-	</head>
-	<body>
-		<main class="container">
-			<!-- 遊戲大標題 -->
-			<header class="hero">
-				<h1>文字養成冒險遊戲《普魯登蒂亞學園事件簿》</h1>
-				<p class="tagline">🔮 奇幻 × 🏫 學園 × 🔍 偵探</p>
-			</header>
+  <!-- 1. 置頂快捷導覽列 -->
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <div class="logo">🔮 GAME LOGO</div>
+      <ul class="nav-links">
+        <li><a href="#hero">首頁</a></li>
+        <li><a href="#story">劇情內容</a></li>
+        <li><a href="#features">遊戲特式</a></li>
+        <li><a href="#characters">角色介紹</a></li>
+      </ul>
+    </div>
+  </nav>
 
-			<!-- 遊戲核心介紹與下載區塊 -->
-			<section class="content-section">
-				<h2>🎮 體驗版發布準備中</h2>
-				<p>跨語言文字養成冒險遊戲《普魯登蒂亞學園事件簿》第一章體驗版即將登場！本專案全面支援繁體中文、英文與日文。</p>
-				
-				<div class="status-box">
-					<p><strong>當前進度：</strong> 準備發布【第一章體驗版】（PC / WEB）</p>
-				</div>
-			</section>
-		</main>
-	</body>
+  <!-- 2. 直立式單頁內容區塊 -->
+  <main class="one-page-scroll">
+    
+    <!-- 區塊：首頁 -->
+    <section id="hero" class="page-section hero-bg">
+      <div class="section-content">
+        <h1>🎮 遊戲主視覺與標題</h1>
+        <p>最新試玩版 / Web 網頁版一鍵開玩按鈕預留區</p>
+      </div>
+    </section>
+
+    <!-- 區塊：劇情內容 -->
+    <section id="story" class="page-section story-bg">
+      <div class="section-content">
+        <h2>🔮 劇情內容</h2>
+        <p>中世紀魔法學園「玻里蒂亞」的探案故事背景...</p>
+      </div>
+    </section>
+
+    <!-- 區塊：遊戲特式 -->
+    <section id="features" class="page-section features-bg">
+      <div class="section-content">
+        <h2>🏫 遊戲特式</h2>
+        <p>屬性養成、日常課堂、突發搜查事件系統展示...</p>
+      </div>
+    </section>
+
+    <!-- 區塊：角色介紹 -->
+    <section id="characters" class="page-section characters-bg">
+      <div class="section-content">
+        <h2>🔍 角色介紹</h2>
+        <p>lynceus, eurydike 等登場人物動態卡片預留區...</p>
+      </div>
+    </section>
+
+  </main>
+
+</body>
 </html>
 
-<!-- 底下是簡單的網頁外觀設計（CSS），讓你的網頁呈現暗色調的魔幻偵探風格 -->
+<!-- 👇 新手看這裡：所有的 CSS 樣式全部放在這裡！ 👇 -->
 <style>
-	body {
-		background-color: #1a1625; /* 深紫色背景 */
-		color: #e0d9f0; /* 淡紫色文字 */
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		min-height: 100vh;
-	}
+  /* 全域滾動流暢化設定 */
+  html {
+    scroll-behavior: smooth; /* 讓畫面跳轉時用「滑動」的方式呈現，而不是瞬間切換 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-	.container {
-		max-width: 800px;
-		width: 90%;
-		text-align: center;
-		padding: 2rem;
-	}
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #0b0b16; /* 深色中世紀奇幻底色 */
+    color: #fff;
+  }
 
-	.hero h1 {
-		color: #bfa6ff; /* 明亮的魔法紫 */
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
-	}
+  /* 1. 置頂快捷導覽列樣式 */
+  .sticky-nav {
+    position: fixed; /* 固定在螢幕頂部，滾動時不會消失 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(11, 11, 22, 0.85); /* 半透明深色背景 */
+    backdrop-filter: blur(10px); /* 磨砂玻璃模糊效果 */
+    z-index: 1000; /* 確保選單永遠擋在遊戲內容上方 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-	.tagline {
-		font-size: 1.5rem;
-		color: #ffd700; /* 金色元素 */
-		letter-spacing: 2px;
-		margin-top: 0;
-	}
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
 
-	.content-section {
-		background-color: #241e33; /* 稍微亮一點的區塊背景 */
-		border: 2px solid #4a3b5c;
-		border-radius: 12px;
-		padding: 2rem;
-		margin-top: 2rem;
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-	}
+  .nav-links {
+    display: flex;
+    list-style: none; /* 拔掉超連結預設的點點 */
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+  }
 
-	h2 {
-		color: #a29bfe;
-		margin-top: 0;
-	}
+  .nav-links a {
+    color: #ccc;
+    text-decoration: none; /* 拔掉超連結預設的底線 */
+    font-size: 1.1rem;
+    transition: color 0.3s; /* 讓滑鼠移上去變色時有漸變效果 */
+  }
 
-	.status-box {
-		background-color: #1a1625;
-		border-left: 4px solid #ffd700;
-		padding: 1rem;
-		text-align: left;
-		margin-top: 1.5rem;
-		border-radius: 0 8px 8px 0;
-	}
+  .nav-links a:hover {
+    color: #da9100; /* 滑鼠移上去時變成金色 */
+  }
+
+  /* 2. 單頁滿版區塊樣式 */
+  .page-section {
+    width: 100%;
+    min-height: 100vh; /* 強制讓每一個區塊的高度，都剛好撐滿玩家的「一整個螢幕」 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px; /* 預留 70px 給頂部選單，字才不會被擋住 */
+    box-sizing: border-box;
+  }
+
+  /* 內容置中容器 */
+  .section-content {
+    max-width: 1000px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+  }
+
+  /* 臨時的測試背景色，方便你拉拉看網頁，後面會換成精美的遊戲圖 */
+  .hero-bg { background: #121225; }
+  .story-bg { background: #1a1a3a; }
+  .features-bg { background: #121225; }
+  .characters-bg { background: #1a1a3a; }
 </style>
-
